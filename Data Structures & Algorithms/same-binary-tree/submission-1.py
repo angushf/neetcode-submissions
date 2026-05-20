@@ -1,0 +1,26 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+class Solution:
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+
+        def inOrderTraversal(node1, node2):
+            if node1 == None and node2 == None:
+                return True
+            elif node1 == None:
+                return False
+            elif node2 == None:
+                return False
+
+            left = inOrderTraversal(node1.left, node2.left)
+            right = inOrderTraversal(node1.right, node2.right)
+
+            return node1.val == node2.val and left and right
+
+
+        return inOrderTraversal(p, q)
+
